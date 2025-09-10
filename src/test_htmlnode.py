@@ -20,7 +20,7 @@ class TestHtmlNode(unittest.TestCase):
     def test_props_to_html(self):
         no_children = HTMLNode(tag="p", value="text here", props={"some": "value"})
         hnode = HTMLNode("p", "text here", no_children, {"some": "value"})
-        self.assertTrue(hnode.props_to_html() == 'some="value" ')
+        self.assertTrue(hnode.props_to_html() == 'some="value"')
 
     def test_repr(self):
         no_children = HTMLNode(tag="p", value="text here", props={"some": "value"})
