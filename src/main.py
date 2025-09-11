@@ -1,10 +1,11 @@
-from textnode import TextNode
-from textnode import TextType
+from textnode import TextNode, LeafNode, TextType
+from htmlnode import HTMLNode, LeafNode, ParentNode
+import inline_markdown
 
 
 def main():
-    text_node = TextNode("dummy", TextType.BOLD, "https://www.boot.dev")
-    print(text_node)
+    text = "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+    print(inline_markdown.extract_markdown_links(text))
 
 
 if __name__ == "__main__":
