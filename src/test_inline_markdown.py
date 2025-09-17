@@ -8,9 +8,10 @@ from inline_markdown import (
     split_nodes_link,
     text_to_textnodes,
 )
+from block_markdown import markdown_to_blocks
 
 
-class TestSplitNodesDelimiter(unittest.TestCase):
+class TestInlineMarkdown(unittest.TestCase):
     def test_delim_bold(self):
         node = TextNode("This is text with a **bolded** word", TextType.PLAIN)
         new_nodes = split_nodes_delimiter([node], "**", TextType.BOLD)
