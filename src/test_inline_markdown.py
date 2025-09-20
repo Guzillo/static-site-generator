@@ -8,7 +8,6 @@ from inline_markdown import (
     split_nodes_link,
     text_to_textnodes,
 )
-from block_markdown import markdown_to_blocks
 
 
 class TestInlineMarkdown(unittest.TestCase):

@@ -22,7 +22,7 @@ def block_to_block_type(markdown_text_block):
     lines = markdown_text_block.split("\n")
     if re.search(r"^#{1,6} .+", markdown_text_block):
         return BlockType.HEADING
-    if re.search(r"^```[A-Za-z0-9\n]*```$", markdown_text_block):
+    if re.search(r"^```\n[\S\s]*\n```$", markdown_text_block):
         return BlockType.CODE
     status = True
     for line in lines:
