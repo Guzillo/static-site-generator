@@ -1,3 +1,4 @@
+from os.path import dirname
 from typing import List
 import block_markdown, inline_markdown, textnode, htmlnode
 from block_markdown import BlockType
@@ -61,7 +62,7 @@ def markdown_to_html_node(markdown):
                     )
             node = htmlnode.ParentNode("ol", children)
         final_children.append(node)
-    return htmlnode.ParentNode("div", final_children)
+    return htmlnode.ParentNode("html", [htmlnode.ParentNode("div", final_children)])
 
 
 def text_to_children(text):
@@ -93,3 +94,20 @@ def copy_files(from_path, to_path):
             copy_files(os.path.join(from_path, file), os.path.join(to_path, file))
             continue
         shutil.copy(os.path.join(from_path, file), os.path.join(to_path, file))
+
+
+def generate_page(from_path, template_path, dest_path):
+    print(f"Generating page from {from_path} to {dest_path} using {template_path}")
+    md_content = None
+    template_content = None
+    with open(from_path) as f:
+        md_content = f.read()
+    with open(template_path) as f:
+        template_content = f.read()
+    markdown_html = markdown_to_html_node(md_content).to_html()
+    title = extract_title(md_content)
+    dir_name = os.path.dirname(dest_path)
+    if not os.path.exists(dir_name):
+        os.mkdir(dir_name)
+    with open(dest_path, "w") as f:
+        f.write(markdown_html)
