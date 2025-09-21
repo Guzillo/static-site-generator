@@ -1,7 +1,7 @@
 import unittest
 from htmlnode import LeafNode, ParentNode
-import markdown
 from markdown import markdown_to_html_node
+from markdown import extract_title
 
 
 class TestMarkdown(unittest.TestCase):
@@ -101,6 +101,17 @@ the **same** even with inline stuff
         self.assertEqual(
             html,
             "<div><pre><code>This is text that _should_ remain\nthe **same** even with inline stuff\n</code></pre></div>",
+        )
+
+    def test_extract_title(self):
+        self.assertListEqual(
+            ["hello", "adele", "it's", "me"],
+            [
+                extract_title("hi\n# hello"),
+                extract_title("## oke\n# adele"),
+                extract_title("###\n#weird\n# it's"),
+                extract_title("\n# me"),
+            ],
         )
 
     if __name__ == "__main__":

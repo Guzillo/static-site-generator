@@ -1,10 +1,11 @@
-from textnode import TextNode, LeafNode, TextType
-from htmlnode import HTMLNode, LeafNode, ParentNode
-import inline_markdown
+import os
+import shutil
+import markdown
 
 
 def main():
-    pass
+    markdown.copy_files("static", "public")
+
 
 if __name__ == "__main__":
     main()
